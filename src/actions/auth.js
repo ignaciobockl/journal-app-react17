@@ -4,12 +4,28 @@ import { types } from "../types/types";
 
 
 export const startLoginEmailPassword = ( email, password ) => {
+    // return ( dispatch ) => {
+    //     firebase.auth().signInWithEmailAndPassword( email, password )
+    //         .then( ({ user }) =>{
+    //             dispatch(
+    //                 login( user.uid, user.displayName )
+    //             )
+    //         })
+    //         .catch( err => console.log(err) );
+
+    // }
+}
+
+export const startRegisterWithEmailPassword = ( email, password, name ) => {
     return ( dispatch ) => {
-
-        setTimeout(() => {
-            dispatch( login(123, 'Pollo') );
-        }, 3500);
-
+        firebase.auth().createUserWithEmailAndPassword( email, password )
+            .then( async({ user }) =>{
+                await user.updateProfile({ displayName: name });
+                dispatch(
+                    login( user.uid, user.displayName )
+                )
+            })
+            .catch( err => console.log(err) );
     }
 }
 
