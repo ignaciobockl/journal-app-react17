@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
 import moment from 'moment';
+
 import { activeNotes } from '../../actions/notes';
 
 
@@ -23,7 +23,7 @@ export const JournalEntry = ({ id, date, title, body, url }) => {
 
     return (
     <div 
-        className='journal__entry pointer'
+        className='journal__entry pointer animate__animated animate__fadeIn animate__faster'
         onClick={ handleEntryClick }
     >
 
