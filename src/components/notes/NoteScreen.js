@@ -64,7 +64,7 @@ export const NoteScreen = () => {
             <div className='notes__image'>
               <img
                 alt='imagen'
-                src="https://i0.wp.com/zeeoii.com/wp-content/uploads/2020/07/4K-Ultra-HD-Nature-Mountains-Wallpapers-3840X2160-22.jpg?fit=1024%2C576&ssl=1"
+                src={ note.url }
               />
             </div>
           ) 
