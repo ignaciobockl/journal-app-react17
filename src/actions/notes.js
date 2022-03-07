@@ -23,6 +23,8 @@ export const startNewNote = () => {
 
         dispatch( activeNotes( docRef.id, newNote ) );
 
+        dispatch( addNewNote( docRef.id, newNote ) );
+
     }
 }
 
@@ -30,6 +32,14 @@ export const activeNotes = ( id, note ) => ({
     type: types.notesActive,
     payload: {
         id,
+        ...note
+    }
+});
+
+export const addNewNote = ( id, note ) => ({
+    type: types.notesAddNew,
+    payload: {
+        id, 
         ...note
     }
 });
@@ -119,7 +129,7 @@ export const startDeleting = ( id ) => {
         const { uid } = getState().auth;
 
         try {
-            
+
             await db.doc(`${ uid }/journal/notes/${ id }`).delete();
             
             dispatch( deleteNote(id) );
@@ -133,4 +143,8 @@ export const startDeleting = ( id ) => {
 export const deleteNote = ( id ) => ({
     type: types.notesDelete,
     payload: id
+});
+
+export const noteLogout = () => ({
+    type: types.notesLogoutCleaning
 });
